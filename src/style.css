@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+/* Font dari Google tetap dipertahankan */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+
+/* Jika ingin menambahkan custom helper */
+@layer utilities {
+  .text-luxury {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+  }
+}

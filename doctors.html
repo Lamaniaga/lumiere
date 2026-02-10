@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Experts | Lumière Clinic</title>
+</head>
+
+<body x-data="{ bookingOpen: false, open: false }" class="bg-[#FDFBF7] text-slate-800 antialiased font-sans">
+
+    <nav class="sticky top-0 z-50 bg-[#FDFBF7]/80 backdrop-blur-md border-b border-orange-100" x-data="{ open: false }">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <a href="/" class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-serif tracking-[0.3em] text-slate-900 uppercase">Lumière</span>
+                </a>
+                <div class="hidden md:flex space-x-10 items-center text-[10px] font-bold tracking-[0.2em]">
+                    <a href="/" class="hover:text-orange-400 transition text-slate-500">HOME</a>
+                    <a href="/doctors.html" class="text-orange-400 border-b border-orange-400 pb-1">EXPERTS</a>
+                    <a href="/results.html" class="hover:text-orange-400 transition text-slate-500">RESULTS</a>
+                    <button @click="bookingOpen = true"
+                        class="btn btn-neutral btn-sm rounded-none cursor-pointer hover:text-orange-400 px-8 tracking-[0.2em]">BOOK
+                        NOW</button>
+                </div>
+                <div class="md:hidden">
+                    <button @click="open = !open" class="btn btn-ghost btn-circle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div x-show="open" x-transition
+            class="md:hidden bg-white border-b border-orange-100 px-6 py-8 text-center text-[10px] font-bold tracking-[0.3em]">
+            <div class="flex flex-col space-y-6">
+                <a href="/">HOME</a>
+                <a href="/doctors.html" class="text-orange-400">EXPERTS</a>
+                <a href="/results.html">RESULTS</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="pt-24 pb-16 bg-[#FDFBF7]">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <span class="inline-block text-orange-400 text-[10px] font-bold tracking-[0.4em] mb-6 uppercase">
+                The Science of Aesthetics
+            </span>
+            <h1 class="text-5xl md:text-6xl font-serif mb-8 text-slate-900">Expertise You Can Trust</h1>
+            <p class="text-slate-500 leading-relaxed font-light italic">
+                "Kecantikan yang abadi dimulai dari tangan yang tepat. Tim medis kami menggabungkan keahlian klinis
+                dengan visi artistik untuk mengeluarkan potensi terbaik kulit Anda."
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white" x-data="{ 
+    activeDoctor: 1,
+    doctors: [
+        {
+            id: 1,
+            name: 'Dr. Adriana Lumière, M.Biomed',
+            role: 'Founder & Lead Physician',
+            specialty: 'Dermatology & Anti-Aging Specialist',
+            bio: 'Dengan pengalaman lebih dari 12 tahun, Dr. Adriana mendedikasikan karirnya untuk regenerasi sel kulit. Beliau percaya kecantikan harus menonjolkan karakter alami yang sudah ada.',
+            edu: 'UCL Medical School, London',
+            fellow: 'Korean Society of Aesthetic Surgery',
+            img: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1974&auto=format&fit=crop'
+        },
+        {
+            id: 2,
+            name: 'Dr. Marcus Chen, Sp.KK',
+            role: 'Senior Dermatologist',
+            specialty: 'Laser & Facial Rejuvenation Expert',
+            bio: 'Dr. Marcus adalah ahli dalam teknologi laser medis. Beliau berfokus pada perbaikan tekstur kulit dan penanganan pigmentasi kompleks dengan presisi tinggi.',
+            edu: 'Universitas Indonesia (Spesialis Kulit)',
+            fellow: 'American Academy of Dermatology (AAD)',
+            img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1964&auto=format&fit=crop'
+        }
+    ]
+}">
+        <div class="max-w-7xl mx-auto px-4">
+            <template x-for="doc in doctors" :key="doc.id">
+                <div x-show="activeDoctor === doc.id" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="opacity-0 translate-x-8"
+                    x-transition:enter-end="opacity-100 translate-x-0"
+                    class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+                    <div class="relative group">
+                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative z-10">
+                            <img :src="doc.img"
+                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-full h-full border border-orange-200 -z-0"></div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <span class="text-xs font-bold tracking-[0.3em] text-orange-400 uppercase"
+                                x-text="doc.role"></span>
+                            <h2 class="text-4xl font-serif mt-4 text-slate-900 leading-tight" x-text="doc.name"></h2>
+                            <p class="text-slate-400 text-sm mt-2 italic uppercase tracking-widest"
+                                x-text="doc.specialty"></p>
+                        </div>
+
+                        <p class="text-slate-600 leading-relaxed font-light" x-text="doc.bio"></p>
+
+                        <div class="grid grid-cols-2 gap-8 py-8 border-y border-orange-50">
+                            <div>
+                                <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Education</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.edu"></p>
+                            </div>
+                            <div>
+                                <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Fellowship</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.fellow"></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-6 pt-4">
+                            <div class="pt-8 flex flex-col gap-6">
+                                <div class="flex items-center gap-4">
+                                    <span class="text-2xl font-serif italic text-slate-900"
+                                        x-text="'0' + activeDoctor"></span>
+                                    <span class="w-12 h-[1px] bg-orange-200"></span>
+                                    <span class="text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase"
+                                        x-text="'0' + doctors.length + ' Specialists'"></span>
+                                </div>
+
+                                <div class="flex items-center gap-6">
+                                    <div class="flex gap-2">
+                                        <template x-for="doc in doctors" :key="doc.id">
+                                            <button @click="activeDoctor = doc.id"
+                                                :class="activeDoctor === doc.id ? 'w-8 bg-orange-400' : 'w-2 bg-slate-200'"
+                                                class="h-2 rounded-full transition-all duration-500"></button>
+                                        </template>
+                                    </div>
+
+                                    <button
+                                        @click="activeDoctor = activeDoctor === doctors.length ? 1 : activeDoctor + 1"
+                                        class="group flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase ml-4">
+                                        Next Specialist
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-4 w-4 transform group-hover:translate-x-2 transition-transform"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="/results.html"
+                                class="btn btn-neutral rounded-none px-10 tracking-widest text-[10px]">CASE STUDIES</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <section class="py-24 bg-[#2C3333] text-[#FDFBF7] overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center mb-20">
+                <span class="text-orange-300 text-[10px] font-bold tracking-[0.4em] uppercase mb-4 block">Our
+                    Commitment</span>
+                <h2 class="text-4xl font-serif italic mb-4">Medical Excellence</h2>
+                <div class="w-16 h-[1px] bg-orange-300/50 mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+                <div class="group">
+                    <div
+                        class="text-orange-300/30 text-5xl font-serif mb-6 group-hover:text-orange-300 transition-colors duration-500">
+                        01</div>
+                    <h3 class="text-xs font-bold tracking-[0.3em] uppercase mb-4">FDA Approved</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed max-w-xs mx-auto">
+                        Kami hanya menggunakan teknologi yang telah teruji secara klinis dan memiliki sertifikasi
+                        keamanan internasional.
+                    </p>
+                </div>
+
+                <div class="group border-y md:border-y-0 md:border-x border-white/5 py-12 md:py-0">
+                    <div
+                        class="text-orange-300/30 text-5xl font-serif mb-6 group-hover:text-orange-300 transition-colors duration-500">
+                        02</div>
+                    <h3 class="text-xs font-bold tracking-[0.3em] uppercase mb-4">Bespoke Protocol</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed max-w-xs mx-auto">
+                        Setiap pasien mendapatkan analisis kulit digital sebelum menentukan langkah perawatan yang
+                        personal.
+                    </p>
+                </div>
+
+                <div class="group">
+                    <div
+                        class="text-orange-300/30 text-5xl font-serif mb-6 group-hover:text-orange-300 transition-colors duration-500">
+                        03</div>
+                    <h3 class="text-xs font-bold tracking-[0.3em] uppercase mb-4">Ethical Practice</h3>
+                    <p class="text-slate-400 text-sm font-light leading-relaxed max-w-xs mx-auto">
+                        Keamanan jangka panjang pasien adalah prioritas utama kami di atas tren kecantikan sementara.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div
+            class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none">
+        </div>
+    </section>
+
+    <footer class="bg-[#1a1a1a] text-[#FDFBF7] py-24">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-16">
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="font-serif text-3xl tracking-[0.3em] mb-8 uppercase">Lumière</h3>
+                <p class="text-slate-500 max-w-sm mb-12 leading-relaxed font-light">Advanced aesthetic clinic providing
+                    bespoke skin treatments with high-precision medical standards.</p>
+                <div class="flex gap-6 text-xs font-bold tracking-[0.2em] uppercase">
+                    <a href="#" class="hover:text-orange-300 transition">Instagram</a>
+                    <a href="#" class="hover:text-orange-300 transition">WhatsApp</a>
+                </div>
+            </div>
+
+            <div>
+                <h4
+                    class="text-[10px] font-bold tracking-[0.3em] mb-8 uppercase text-slate-500 italic underline underline-offset-8">
+                    Quick Navigation</h4>
+                <ul class="space-y-4 text-[11px] font-medium tracking-[0.1em] text-slate-300">
+                    <li><a href="/" class="hover:text-orange-300 transition uppercase">Home</a></li>
+                    <li><a href="/doctors.html" class="hover:text-orange-300 transition uppercase text-orange-300">Our
+                            Experts</a></li>
+                    <li><a href="/results.html" class="hover:text-orange-300 transition uppercase">Real Results</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4
+                    class="text-[10px] font-bold tracking-[0.3em] mb-8 uppercase text-slate-500 italic underline underline-offset-8">
+                    Visit Us</h4>
+                <address class="not-italic text-sm text-slate-400 leading-loose">
+                    Senopati Court, 3rd Floor<br>
+                    Jakarta Selatan, 12190<br>
+                    Mon - Sat: 09:00 - 20:00
+                </address>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto px-4 mt-24 pt-8 border-t border-white/5 text-[9px] tracking-[0.4em] text-slate-700 text-center uppercase">
+            © 2026 Lumière Clinic — Built by LamanNiaga
+        </div>
+    </footer>
+
+        <div x-show="bookingOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+        class="fixed inset-0 z-[100] overflow-y-auto" style="display: none;">
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" @click="bookingOpen = false"></div>
+
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="relative bg-white w-full max-w-xl shadow-2xl overflow-hidden" @click.away="bookingOpen = false"
+                x-show="bookingOpen" x-transition:enter="transition ease-out duration-500"
+                x-transition:enter-start="opacity-0 translate-y-8 scale-95"
+                x-transition:enter-end="opacity-100 translate-y-0 scale-100">
+                <button @click="bookingOpen = false"
+                    class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <div class="p-8 md:p-12" x-data="bookingForm()">
+                    <span
+                        class="text-orange-400 text-[9px] font-bold tracking-[0.4em] uppercase mb-4 block">Reservation</span>
+                    <h2 class="text-3xl font-serif text-slate-900 mb-2">Book Your <span
+                            class="italic text-slate-400">Glow</span>
+                    </h2>
+                    <p class="text-slate-500 text-sm font-light mb-10 italic">Pilih jadwal konsultasi pribadi Anda
+                        bersama pakar
+                        estetika kami.</p>
+
+                    <form id="lumiere-form" action="https://api.web3forms.com/submit" x-on:submit="submitForm($event)"
+                        method="POST" class="space-y-6">
+                        <input type="hidden" name="access_key" value="6ed70a4f-641f-4cd6-a4de-fe79f30b411a">
+
+                        <div
+                            class="group border-b border-slate-200 focus-within:border-orange-400 transition-all duration-500">
+                            <label
+                                class="block text-[10px] font-bold tracking-[0.4em] text-slate-400 uppercase mb-2">Full
+                                Name</label>
+                            <input type="text" name="name" required
+                                class="w-full py-3 px-3 bg-transparent border-none focus:ring-0 text-sm font-light text-slate-900"
+                                placeholder="Your name">
+                        </div>
+
+                        <div
+                            class="group border-b border-slate-200 focus-within:border-orange-400 transition-all duration-500">
+                            <label
+                                class="block text-[10px] font-bold tracking-[0.4em] text-slate-400 uppercase mb-2">Email
+                                Address</label>
+                            <input type="email" name="email" required
+                                class="w-full py-3 px-3 bg-transparent border-none focus:ring-0 text-sm font-light text-slate-900"
+                                placeholder="email@address.com">
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div
+                                class="group border-b border-slate-200 focus-within:border-orange-400 transition-all duration-500">
+                                <label
+                                    class="block text-[10px] font-bold tracking-[0.4em] text-slate-400 uppercase mb-2">Service</label>
+                                <select name="service"
+                                    class="w-full py-3 px-3 bg-transparent border-none focus:ring-0 text-sm font-light text-slate-600 bg-white">
+                                    <option>Laser Rejuvenation</option>
+                                    <option>Lumière Glass Skin</option>
+                                    <option>Consultation</option>
+                                </select>
+                            </div>
+                            <div
+                                class="group border-b border-slate-200 focus-within:border-orange-400 transition-all duration-500">
+                                <label
+                                    class="block text-[10px] font-bold tracking-[0.4em] text-slate-400 uppercase mb-2">Preferred
+                                    Date</label>
+                                <input type="date" name="date" required
+                                    class="w-full py-3 px-3 bg-transparent border-none focus:ring-0 text-sm font-light text-slate-600">
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-btn"
+                            class="w-full bg-slate-900 text-white py-6 text-[10px] font-bold tracking-[0.5em] uppercase hover:bg-orange-400 transition-all duration-700 shadow-2xl mt-8">
+
+                            <span x-show="!loading">Request Appointment</span>
+                            <span x-show="loading">Sending Request..</span>
+                        </button>
+
+                        <div x-show="success" x-transition
+                            class="mt-4 text-[10px] tracking-widest text-center uppercase text-orange-400">
+                            Invitation sent. Please check your inbox shortly.
+                        </div>
+                        <div x-show="failed" x-transition
+                            class="mt-4 text-[10px] tracking-widest text-center uppercase text-red-500">
+                            Something went wrong.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
