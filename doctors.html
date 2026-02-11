@@ -57,108 +57,116 @@
         </div>
     </section>
 
-    <section class="py-20 bg-white" x-data="{ 
+<section class="py-20 bg-white" x-data="{ 
     activeDoctor: 1,
     doctors: [
         {
             id: 1,
-            name: 'Dr. Adriana Lumière, M.Biomed',
+            name: 'Dr. Adriana Mariana, M.Biomed',
             role: 'Founder & Lead Physician',
             specialty: 'Dermatology & Anti-Aging Specialist',
             bio: 'Dengan pengalaman lebih dari 12 tahun, Dr. Adriana mendedikasikan karirnya untuk regenerasi sel kulit. Beliau percaya kecantikan harus menonjolkan karakter alami yang sudah ada.',
             edu: 'UCL Medical School, London',
             fellow: 'Korean Society of Aesthetic Surgery',
-            img: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1974&auto=format&fit=crop'
+            img: '/images/expert1.webp'
         },
         {
             id: 2,
-            name: 'Dr. Marcus Chen, Sp.KK',
+            name: 'Dr. Kim Seun Yeok, Sp.KK',
             role: 'Senior Dermatologist',
             specialty: 'Laser & Facial Rejuvenation Expert',
-            bio: 'Dr. Marcus adalah ahli dalam teknologi laser medis. Beliau berfokus pada perbaikan tekstur kulit dan penanganan pigmentasi kompleks dengan presisi tinggi.',
-            edu: 'Universitas Indonesia (Spesialis Kulit)',
-            fellow: 'American Academy of Dermatology (AAD)',
-            img: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=1964&auto=format&fit=crop'
+            bio: 'Dr. Kim adalah ahli dalam teknologi laser medis. Beliau berfokus pada perbaikan tekstur kulit dan penanganan pigmentasi kompleks dengan presisi tinggi.',
+            edu: 'Universitas Seoul (Spesialis Kulit)',
+            fellow: 'Korean Society of Aesthetic Surgery',
+            img: '/images/expert2.webp'
         }
     ]
 }">
-        <div class="max-w-7xl mx-auto px-4">
-            <template x-for="doc in doctors" :key="doc.id">
-                <div x-show="activeDoctor === doc.id" x-transition:enter="transition ease-out duration-500"
-                    x-transition:enter-start="opacity-0 translate-x-8"
-                    x-transition:enter-end="opacity-100 translate-x-0"
-                    class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-
-                    <div class="relative group">
-                        <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative z-10">
-                            <img :src="doc.img"
-                                class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-full h-full border border-orange-200 -z-0"></div>
+    <div class="max-w-7xl mx-auto px-6">
+        <template x-for="doc in doctors" :key="doc.id">
+            <div x-show="activeDoctor === doc.id" 
+                 x-transition:enter="transition ease-out duration-700"
+                 x-transition:enter-start="opacity-0 translate-y-8"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center"
+                 style="display: none;"> <div class="relative group cursor-pointer">
+                    <div class="aspect-[4/5] overflow-hidden bg-slate-100 relative z-10 transition-transform duration-700 ease-in-out group-hover:-translate-y-4 group-hover:-translate-x-4 shadow-xl">
+                        <img :src="doc.img"
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
                     </div>
-
-                    <div class="space-y-8">
-                        <div>
-                            <span class="text-xs font-bold tracking-[0.3em] text-orange-400 uppercase"
-                                x-text="doc.role"></span>
-                            <h2 class="text-4xl font-serif mt-4 text-slate-900 leading-tight" x-text="doc.name"></h2>
-                            <p class="text-slate-400 text-sm mt-2 italic uppercase tracking-widest"
-                                x-text="doc.specialty"></p>
-                        </div>
-
-                        <p class="text-slate-600 leading-relaxed font-light" x-text="doc.bio"></p>
-
-                        <div class="grid grid-cols-2 gap-8 py-8 border-y border-orange-50">
-                            <div>
-                                <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Education</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.edu"></p>
-                            </div>
-                            <div>
-                                <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Fellowship</h4>
-                                <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.fellow"></p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-6 pt-4">
-                            <div class="pt-8 flex flex-col gap-6">
-                                <div class="flex items-center gap-4">
-                                    <span class="text-2xl font-serif italic text-slate-900"
-                                        x-text="'0' + activeDoctor"></span>
-                                    <span class="w-12 h-[1px] bg-orange-200"></span>
-                                    <span class="text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase"
-                                        x-text="'0' + doctors.length + ' Specialists'"></span>
-                                </div>
-
-                                <div class="flex items-center gap-6">
-                                    <div class="flex gap-2">
-                                        <template x-for="doc in doctors" :key="doc.id">
-                                            <button @click="activeDoctor = doc.id"
-                                                :class="activeDoctor === doc.id ? 'w-8 bg-orange-400' : 'w-2 bg-slate-200'"
-                                                class="h-2 rounded-full transition-all duration-500"></button>
-                                        </template>
-                                    </div>
-
-                                    <button
-                                        @click="activeDoctor = activeDoctor === doctors.length ? 1 : activeDoctor + 1"
-                                        class="group flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase ml-4">
-                                        Next Specialist
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-4 w-4 transform group-hover:translate-x-2 transition-transform"
-                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <a href="/results.html"
-                                class="btn btn-neutral rounded-none px-10 tracking-widest text-[10px]">CASE STUDIES</a>
-                        </div>
+                    
+                    <div class="absolute top-0 left-0 w-full h-full border border-orange-200 z-0 
+                                translate-x-6 translate-y-6 
+                                group-hover:translate-x-2 group-hover:translate-y-2 
+                                transition-all duration-700 ease-out">
                     </div>
                 </div>
-            </template>
-        </div>
-    </section>
+
+                <div class="space-y-8">
+                    <div>
+                        <span class="text-xs font-bold tracking-[0.3em] text-orange-400 uppercase"
+                              x-text="doc.role"></span>
+                        <h2 class="text-4xl md:text-5xl font-serif mt-4 text-slate-900 leading-tight" x-text="doc.name"></h2>
+                        <p class="text-slate-400 text-sm mt-2 italic uppercase tracking-widest"
+                           x-text="doc.specialty"></p>
+                    </div>
+
+                    <p class="text-slate-600 leading-relaxed font-light text-lg" x-text="doc.bio"></p>
+
+                    <div class="grid grid-cols-2 gap-8 py-8 border-y border-orange-50">
+                        <div>
+                            <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Education</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.edu"></p>
+                        </div>
+                        <div>
+                            <h4 class="text-[10px] font-bold tracking-widest uppercase mb-2">Fellowship</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed italic" x-text="doc.fellow"></p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8 pt-4">
+                        <div class="flex flex-col gap-6">
+                            <div class="flex items-center gap-4">
+                                <span class="text-3xl font-serif italic text-slate-900"
+                                      x-text="'0' + activeDoctor"></span>
+                                <span class="w-12 h-[1px] bg-orange-200"></span>
+                                <span class="text-[10px] font-bold tracking-[0.3em] text-slate-400 uppercase"
+                                      x-text="'0' + doctors.length + ' Specialists'"></span>
+                            </div>
+
+                            <div class="flex items-center gap-6">
+                                <div class="flex gap-2">
+                                    <template x-for="d in doctors" :key="d.id">
+                                        <button @click="activeDoctor = d.id"
+                                            :class="activeDoctor === d.id ? 'w-10 bg-orange-400' : 'w-2 bg-slate-200 hover:bg-slate-300'"
+                                            class="h-2 rounded-full transition-all duration-500 outline-none"></button>
+                                    </template>
+                                </div>
+
+                                <button
+                                    @click="activeDoctor = activeDoctor === doctors.length ? 1 : activeDoctor + 1"
+                                    class="group flex items-center gap-3 text-[10px] font-bold tracking-[0.2em] uppercase ml-4 outline-none">
+                                    Next Specialist
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4 transform group-hover:translate-x-2 transition-transform"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <a href="/results.html"
+                           class="inline-block border border-slate-900 text-slate-900 px-10 py-4 tracking-[0.2em] text-[10px] font-bold hover:bg-slate-900 hover:text-white transition-all duration-300">
+                           CASE STUDIES
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </div>
+</section>
 
     <section class="py-24 bg-[#2C3333] text-[#FDFBF7] overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-4 relative z-10">
