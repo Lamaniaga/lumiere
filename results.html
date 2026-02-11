@@ -52,7 +52,7 @@
         </div>
     </section>
 
-    <section class="py-24 bg-white" x-data="{ slider: 50 }">
+    <section class="py-24 bg-white" x-data="{ slider: 42 }">
         <div class="max-w-5xl mx-auto px-4">
 
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -71,13 +71,13 @@
 
             <div class="relative group aspect-[16/9] md:aspect-[21/9] overflow-hidden bg-slate-100 shadow-2xl">
 
-                <img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?q=80&w=2071&auto=format&fit=crop"
+                <img src="/images/comparison1.webp"
                     class="absolute inset-0 w-full h-full object-cover">
 
                 <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-10"
                     :style="'clip-path: inset(0 ' + (100 - slider) + '% 0 0)'">
-                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop"
-                        class="absolute inset-0 w-full h-full object-cover grayscale">
+                    <img src="/images/comparison2.webp"
+                        class="absolute inset-0 w-full h-full object-cover">
                 </div>
 
                 <div class="absolute top-0 bottom-0 z-20 pointer-events-none" :style="'left: ' + slider + '%'">
@@ -128,17 +128,17 @@
                 <div class="lg:col-span-5 relative">
                     <div class="aspect-[4/5] bg-slate-200 overflow-hidden relative shadow-2xl">
                         <img x-show="active === 0"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974"
+                            src="/images/testimony1.webp"
                             class="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                             x-transition:enter="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100">
 
                         <img x-show="active === 1"
-                            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974"
+                            src="/images/testimony2.webp"
                             class="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                             x-transition:enter="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100">
 
                         <img x-show="active === 2"
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1974"
+                            src="/images/testimony3.webp"
                             class="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                             x-transition:enter="opacity-0 scale-105" x-transition:enter-end="opacity-100 scale-100">
                     </div>
