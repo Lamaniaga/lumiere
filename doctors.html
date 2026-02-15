@@ -59,31 +59,33 @@
             </div>
         </section>
 
-        <section class="py-20 bg-white" x-data="{ 
-    activeDoctor: 1,
-    doctors: [
-        {
-            id: 1,
-            name: 'Dr. Adriana Mariana, M.Biomed',
-            role: 'Founder & Lead Physician',
-            specialty: 'Dermatology & Anti-Aging Specialist',
-            bio: 'Dengan pengalaman lebih dari 12 tahun, Dr. Adriana mendedikasikan karirnya untuk regenerasi sel kulit. Beliau percaya kecantikan harus menonjolkan karakter alami yang sudah ada.',
-            edu: 'UCL Medical School, London',
-            fellow: 'Korean Society of Aesthetic Surgery',
-            img: '/images/expert1.webp'
-        },
-        {
-            id: 2,
-            name: 'Dr. Kim Seun Yeok, Sp.KK',
-            role: 'Senior Dermatologist',
-            specialty: 'Laser & Facial Rejuvenation Expert',
-            bio: 'Dr. Kim adalah ahli dalam teknologi laser medis. Beliau berfokus pada perbaikan tekstur kulit dan penanganan pigmentasi kompleks dengan presisi tinggi.',
-            edu: 'Universitas Seoul (Spesialis Kulit)',
-            fellow: 'Korean Society of Aesthetic Surgery',
-            img: '/images/expert2.webp'
-        }
-    ]
-}">
+        <section class="py-20 bg-white" 
+            x-data="{ 
+                activeDoctor: 1,
+                doctors: [
+                    {
+                        id: 1,
+                        name: 'Dr. Adriana Mariana, M.Biomed',
+                        role: 'Founder & Lead Physician',
+                        specialty: 'Dermatology & Anti-Aging Specialist',
+                        bio: 'Dengan pengalaman lebih dari 12 tahun, Dr. Adriana mendedikasikan karirnya untuk regenerasi sel kulit. Beliau percaya kecantikan harus menonjolkan karakter alami yang sudah ada.',
+                        edu: 'UCL Medical School, London',
+                        fellow: 'Korean Society of Aesthetic Surgery',
+                        img: '/images/expert1.webp'
+                    },
+                    {
+                        id: 2,
+                        name: 'Dr. Kim Seun Yeok, Sp.KK',
+                        role: 'Senior Dermatologist',
+                        specialty: 'Laser & Facial Rejuvenation Expert',
+                        bio: 'Dr. Kim adalah ahli dalam teknologi laser medis. Beliau berfokus pada perbaikan tekstur kulit dan penanganan pigmentasi kompleks dengan presisi tinggi.',
+                        edu: 'Universitas Seoul (Spesialis Kulit)',
+                        fellow: 'Korean Society of Aesthetic Surgery',
+                        img: '/images/expert2.webp'
+                    }
+                ]
+            }"
+        >
             <div class="max-w-7xl mx-auto px-6">
                 <template x-for="doc in doctors" :key="doc.id">
                     <div x-show="activeDoctor === doc.id" x-transition:enter="transition ease-out duration-700"
@@ -94,7 +96,7 @@
                             <div
                                 class="aspect-[4/5] overflow-hidden bg-slate-100 relative z-10 transition-transform duration-700 ease-in-out group-hover:-translate-y-4 group-hover:-translate-x-4 shadow-xl">
                                 <img :src="doc.img" alt="Expertise"
-                                    class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
+                                    class="w-full h-full object-cover md:grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
                             </div>
 
                             <div class="absolute top-0 left-0 w-full h-full border border-orange-200 z-0 
